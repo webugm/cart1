@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <title>訂便當1</title>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap/jquery-3.4.1.min.js"></script>
+    <script src="bootstrap/popper.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h1 class="text-center">訂便當</h1>
+        
+        <iframe name="returnWin" style="display: none;" onload="this.onload=function(){
+          var order = document.getElementById('1448331413').value;
+          window.location= 'https://script.google.com/macros/s/AKfycbws_bt7mX6E-BjBoOMbjComdSr_tUdnkOKPM9wo0AcoxLODJfA/exec?order=' + order;
+        }"></iframe>
+
+        <form target="returnWin" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdB8XJGLbpe2OVD-0iVa3elle_LDAfFRROI3YvPjTxYtq7qXA/formResponse" method="post" id="myForm" class="my-5" >
+          
+          <!-- 訂單編號 -->
+
+          <div class="row">         
+            <!--雞腿飯-90元-->              
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>雞腿飯-90元<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="entry.507971526" id="507971526" value="">
+              </div>
+            </div>       
+            <!--雞排飯-80元-->              
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>雞排飯-80元<span class="text-danger">*</span class="text-danger"></label>
+                <input type="text" class="form-control" name="entry.1363070417" id="1363070417" value="">
+              </div>
+            </div>        
+            <!--排骨飯-70元-->              
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>排骨飯-70元<span class="text-danger">*</span class="text-danger"></label>
+                <input type="text" class="form-control" name="entry.1482393574" id="1482393574" value="">
+              </div>
+            </div> 
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12">  
+              <!-- 備註 -->
+              <div class="form-group">
+                <label class="control-label">備註</label>
+                <textarea class="form-control" rows="2" id="1732054840" name="entry.1732054840"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center pb-2">
+            <!-- 訂單編號 -->
+            <input type="hidden" name="entry.1448331413" value="" id="1448331413">
+            <button type="submit" class="btn btn-primary">送出</button>
+          </div>
+      
+        </form>
+      
+      </div>
+      <script>
+        $(function(){
+          var time = Date.now();//時間戳記
+          var order = 'NO'+time;//訂單編號
+          $("#1448331413").val(order);//
+        });
+      
+      </script>
+
+  </body>
+</html>
