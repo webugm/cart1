@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   
+</head>
+<body>
+  <div class="container-fluid mt-5">
+    
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="mb-3">server</h4>
+        <form  id="myForm">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="name">uname</label>
+              <input type="text" class="form-control" id="uname" name="uname" value="" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">pass</label>
+              <input type="text" class="form-control" id="pass" name="pass" value=""
+                required>
+            </div>
+          </div>
+          <input type="hidden" class="form-control" id="op" name="op" value="list">
+          <button class="btn btn-primary btn-sm" type="button" id="send">送出</button>
+        </form>
+        <hr class="mb-4">
+      </div>
+    </div>
+    <div id="box">
+
+    </div>
+
+  
+  </div>
+  <script>
+    $(function(){
+      $('#send').click(function(e){
+            var status = true;
+            var uname = $('#uname').val();
+            var pass = $('#pass').val();   
+            $('input').focus(function(){
+              $(this).css('border','');
+            });
+            if(uname == ''){
+              $('#uname').css('border','1px solid #ff0000');
+              status = false;
+            }
+            if(pass == ''){
+              $('#pass').css('border','1px solid #ff0000');
+              status = false;
+            }
+
+            if(status){
+              var data = {
+                'uname' : uname,
+                'pass':pass,
+                'op': 'list',
+                'callback': '?'
+              }
+              sendQuery(data);
+            }
+      });
+    });
+    //https://cors-anywhere.herokuapp.com/
+    function sendQuery(data){
+      $.ajax({
+        type: "get",
+        url: "https://script.google.com/macros/s/AKfycbwx-v_PdwItpB6BsLhFNx3IG26X6Cj3LIrMstQWFmkJgCDEs18/exec",
+        data: data,
+        dataType: "JSON",
+        success: function (response) {
+          // handleData(response);
+          $('#uname').val('');
+          $('#pass').val(''); 
+        },
+        complete: function(){
+          alert("ajax 發送請求完成後,不管成功或失敗");
+        },
+        error: function(xhr,error,errorStatus){
+          
+          console.log(xhr,error,errorStatus);
+          alert("ajax 發送請求失敗:"+errorStatus);
+        }
+      });
+    }
+    
+    // function sendQuery(data){
+    //   //console.log(data);
+    //   $.ajax({
+    //     type: "get",
+    //     url: "https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbwx-v_PdwItpB6BsLhFNx3IG26X6Cj3LIrMstQWFmkJgCDEs18/exec",
+    //     data: data,
+    //     dataType: "JSON",
+    //     success: function (response) {
+    //       // handleData(response);
+    //       console.log(response);
+    //       //alert("ajax 發送請求完成後,成功");
+    //       //console.log(response);
+    //       $('#uname').val('');
+    //       $('#pass').val(''); 
+    //     },
+    //     complete: function(){
+    //     alert("ajax 發送請求完成後,不管成功或失敗");
+    //     },
+    //     error: function(xhr,error,errorStatus){
+          
+    //       console.log(xhr,error,errorStatus);
+    //     alert("ajax 發送請求失敗:"+errorStatus);
+    //     }
+    //   });
+    // }
+  </script>
+
+  
+</body>
+</html>
